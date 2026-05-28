@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GSP L'Orangeraie — Groupe scolaire privé d'excellence à Rabat, Maroc. Collège & Lycée. Direction pédagogique Driss El Aliti.">
+  <meta property="og:title" content="GSP L'Orangeraie — L'excellence au cœur de votre avenir">
+  <meta property="og:description" content="Groupe scolaire privé au Quartier Les Orangers, Rabat. Collège & Lycée.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0F2B1A">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍊%3C/text%3E%3C/svg%3E">
+  <title>GSP L'Orangeraie — Rabat | Groupe Scolaire Privé</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="preloader">
+    <div class="loader-ring-container">
+      <div class="loader-ring"></div>
+      <div class="loader-ring-inner"></div>
+    </div>
+    <img src="assets/logo.jpg" alt="" class="loader-logo">
+  </div>
+
+  <canvas id="particleCanvas"></canvas>
+
+  <div class="cursor-dot" data-cursor-dot></div>
+  <div class="cursor-ring" data-cursor-ring></div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-indicator-bar"></div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="assets/logo.jpg" alt="GSP L'Orangeraie" class="nav-logo-img">
+      </a>
+      <div class="nav-links">
+        <a href="#about" class="nav-link"><span class="nav-link-text">À Propos</span></a>
+        <a href="#leadership" class="nav-link"><span class="nav-link-text">Direction</span></a>
+        <a href="#levels" class="nav-link"><span class="nav-link-text">Niveaux</span></a>
+        <a href="#contact" class="nav-link"><span class="nav-link-text">Contact</span></a>
+      </div>
+      <a href="#contact" class="nav-cta">
+        <span>Nous Contacter</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+      <button class="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section id="hero" class="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-gradient"></div>
+    </div>
+    <div class="hero-floating">
+      <div class="float-shape float-shape-1"></div>
+      <div class="float-shape float-shape-2"></div>
+      <div class="float-shape float-shape-3"></div>
+      <div class="float-shape float-shape-4"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-logo-wrapper">
+        <img src="assets/logo.jpg" alt="GSP L'Orangeraie" class="hero-logo" id="heroLogo">
+      </div>
+      <span class="hero-badge" id="heroBadge">Établissement Privé — Rabat</span>
+      <h1 class="hero-title" id="heroTitle">
+        <span class="hero-line">GSP L'Orangeraie</span>
+        <span class="hero-line hero-line-alt">L'excellence <em>au cœur</em></span>
+        <span class="hero-line">de votre avenir</span>
+      </h1>
+      <p class="hero-desc" id="heroDesc"></p>
+      <div class="hero-actions" id="heroActions">
+        <a href="#about" class="btn btn-primary">
+          <span>Découvrir l'établissement</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <i class="fas fa-phone-alt"></i>
+          <span>Nous contacter</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-metrics" id="heroMetrics">
+      <div class="metric">
+        <span class="metric-value" data-target="200" data-suffix="K">0</span>
+        <span class="metric-label">Élèves</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric">
+        <span class="metric-value" data-target="30">0</span>
+        <span class="metric-label">Années d'expérience</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric">
+        <span class="metric-value" data-target="98">0</span>
+        <span class="metric-label">% de réussite</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric">
+        <span class="metric-value" data-target="50">0</span>
+        <span class="metric-label">Innovations pédagogiques</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Notre identité</span>
+        <h2 class="section-title">Qui Sommes-Nous ?</h2>
+        <p class="section-sub">Un héritage d'excellence éducative au cœur de Rabat.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="about-image-card">
+            <div class="about-image-bg"></div>
+            <div class="about-image-content">
+              <div class="about-icon-ring">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <h3>30+ Ans d'Excellence</h3>
+              <p>Depuis 1995, nous formons les leaders de demain</p>
+            </div>
+            <div class="about-accent"></div>
+          </div>
+        </div>
+        <div class="about-text reveal-right">
+          <p class="about-lead">
+            GSP L'Orangeraie est un groupe scolaire privé situé au <strong>Quartier Les Orangers, Rabat</strong>.
+            Un établissement où tradition et modernité éducative se rencontrent pour offrir 
+            une expérience d'apprentissage incomparable.
+          </p>
+          <p>
+            Nous offrons une éducation secondaire d'excellence du Collège au Lycée, guidant nos étudiants 
+            jusqu'au Baccalauréat. Notre engagement : cultiver l'excellence académique et le développement 
+            personnel de chaque élève dans un environnement bienveillant et stimulant.
+          </p>
+          <div class="about-values">
+            <div class="value-item" style="--i:0">
+              <div class="value-icon"><i class="fas fa-check"></i></div>
+              <div class="value-text">
+                <strong>Encadrement personnalisé</strong>
+                <span>Suivi individuel de chaque élève</span>
+              </div>
+            </div>
+            <div class="value-item" style="--i:1">
+              <div class="value-icon"><i class="fas fa-check"></i></div>
+              <div class="value-text">
+                <strong>Pédagogie innovante</strong>
+                <span>Méthodes d'enseignement modernes</span>
+              </div>
+            </div>
+            <div class="value-item" style="--i:2">
+              <div class="value-icon"><i class="fas fa-check"></i></div>
+              <div class="value-text">
+                <strong>Infrastructures modernes</strong>
+                <span>Cadre d'apprentissage optimal</span>
+              </div>
+            </div>
+            <div class="value-item" style="--i:3">
+              <div class="value-icon"><i class="fas fa-check"></i></div>
+              <div class="value-text">
+                <strong>Excellence académique</strong>
+                <span>98% de réussite au Baccalauréat</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="leadership" class="section leadership">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Leadership</span>
+        <h2 class="section-title">Directeur Pédagogique</h2>
+        <p class="section-sub">Une vision, un engagement, une excellence reconnue.</p>
+      </div>
+      <div class="leadership-profile">
+        <div class="profile-portrait-side reveal-left">
+          <div class="portrait-container">
+            <div class="portrait-frame"></div>
+            <div class="portrait-image">
+              <img src="driss.png" alt="Driss El Aliti" loading="lazy">
+            </div>
+            <div class="portrait-decoration">
+              <div class="deco-circle deco-circle-1"></div>
+              <div class="deco-circle deco-circle-2"></div>
+              <div class="deco-circle deco-circle-3"></div>
+            </div>
+          </div>
+          <div class="portrait-stats">
+            <div class="pstat reveal-scale" style="--i:0">
+              <span class="pstat-value">200K+</span>
+              <span class="pstat-label">Élèves</span>
+            </div>
+            <div class="pstat reveal-scale" style="--i:1">
+              <span class="pstat-value">30+</span>
+              <span class="pstat-label">Ans d'exp.</span>
+            </div>
+            <div class="pstat reveal-scale" style="--i:2">
+              <span class="pstat-value">98%</span>
+              <span class="pstat-label">Réussite</span>
+            </div>
+            <div class="pstat reveal-scale" style="--i:3">
+              <span class="pstat-value">50+</span>
+              <span class="pstat-label">Innovations</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-info-side reveal-right">
+          <span class="profile-role">Directeur Pédagogique Émérite</span>
+          <h2 class="profile-name">Driss El Aliti</h2>
+          <span class="profile-institution">GSP L'Orangeraie — Rabat</span>
+          <div class="profile-bio">
+            <p>
+              Fort de plus de trois décennies de leadership éducatif exceptionnel, Driss El Aliti incarne 
+              l'excellence pédagogique et l'innovation dans la transmission intergénérationnelle. Figure 
+              de proue reconnue pour son intégrité intellectuelle et son dévouement indéfectible à l'éducation.
+            </p>
+            <p>
+              Son expertise en stratégie éducative, son engagement pour l'excellence académique et sa vision 
+              avant-gardiste de l'enseignement moderne font de lui un directeur unanimement respecté par ses 
+              pairs dans la communauté éducative nationale et internationale.
+            </p>
+          </div>
+          <div class="profile-achievements">
+            <div class="achievement" style="--i:0">
+              <div class="achievement-icon"><i class="fas fa-award"></i></div>
+              <div class="achievement-text">
+                <h4>Excellence Pédagogique</h4>
+                <p>Leadership reconnu dans l'innovation éducative</p>
+              </div>
+            </div>
+            <div class="achievement" style="--i:1">
+              <div class="achievement-icon"><i class="fas fa-book-open"></i></div>
+              <div class="achievement-text">
+                <h4>Vision Académique</h4>
+                <p>Stratégie d'enseignement progressive et inclusive</p>
+              </div>
+            </div>
+            <div class="achievement" style="--i:2">
+              <div class="achievement-icon"><i class="fas fa-handshake"></i></div>
+              <div class="achievement-text">
+                <h4>Leadership Inspirant</h4>
+                <p>Guide des étudiants vers un succès durable</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reel" class="section reel">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Média</span>
+        <h2 class="section-title">Découvrez Notre Établissement</h2>
+        <p class="section-sub">Un aperçu de l'excellence GSP L'Orangeraie en images.</p>
+      </div>
+      <div class="reel-wrapper reveal">
+        <div class="reel-container">
+          <iframe src="https://www.instagram.com/p/DYmfaXmM2Bw/embed/captioned" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; fullscreen" loading="lazy" class="reel-iframe"></iframe>
+        </div>
+        <div class="reel-side">
+          <div class="reel-badge"><i class="fab fa-instagram"></i> Instagram</div>
+          <h3>Suivez-Nous</h3>
+          <p>Restez connecté avec GSP L'Orangeraie et suivez notre actualité sur Instagram.</p>
+          <a href="https://www.instagram.com/lorangeraie_highschool/" target="_blank" rel="noopener" class="btn btn-primary">
+            <i class="fab fa-instagram"></i>
+            <span>Nous suivre</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="levels" class="section levels">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Parcours</span>
+        <h2 class="section-title">Niveaux Proposés</h2>
+        <p class="section-sub">Un parcours complet du Collège au Baccalauréat.</p>
+      </div>
+      <div class="levels-grid">
+        <div class="level-card reveal" style="--delay:0ms">
+          <div class="level-card-bg"></div>
+          <div class="level-card-content">
+            <div class="level-icon-wrap">
+              <i class="fas fa-school"></i>
+            </div>
+            <h3>Collège</h3>
+            <p>Éducation au niveau du secondaire inférieur, une fondation solide pour les études futures.</p>
+            <ul class="level-list">
+              <li><i class="fas fa-circle"></i> Programme enrichi</li>
+              <li><i class="fas fa-circle"></i> Accompagnement personnalisé</li>
+              <li><i class="fas fa-circle"></i> Activités parascolaires</li>
+              <li><i class="fas fa-circle"></i> Développement des compétences</li>
+            </ul>
+          </div>
+        </div>
+        <div class="level-card reveal" style="--delay:150ms">
+          <div class="level-card-bg"></div>
+          <div class="level-card-content">
+            <div class="level-icon-wrap">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Lycée</h3>
+            <p>Éducation au niveau du secondaire supérieur menant au Baccalauréat avec excellence.</p>
+            <ul class="level-list">
+              <li><i class="fas fa-circle"></i> Filières diversifiées</li>
+              <li><i class="fas fa-circle"></i> Préparation Baccalauréat</li>
+              <li><i class="fas fa-circle"></i> Orientation universitaire</li>
+              <li><i class="fas fa-circle"></i> Projets tutorés</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Contact</span>
+        <h2 class="section-title">Contactez-Nous</h2>
+        <p class="section-sub">Prenez rendez-vous ou posez-nous vos questions.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info-side reveal-left">
+          <div class="contact-card" style="--i:0">
+            <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+            <div class="contact-card-text">
+              <h4>Téléphone</h4>
+              <a href="tel:+212666134207">0666 13 42 07</a>
+            </div>
+          </div>
+          <div class="contact-card" style="--i:1">
+            <div class="contact-card-icon"><i class="fas fa-location-dot"></i></div>
+            <div class="contact-card-text">
+              <h4>Adresse</h4>
+              <p>Quartier Les Orangers, Rabat 10100</p>
+            </div>
+          </div>
+          <div class="contact-card" style="--i:2">
+            <div class="contact-card-icon"><i class="fas fa-clock"></i></div>
+            <div class="contact-card-text">
+              <h4>Horaires</h4>
+              <p>Lun–Ven : 8h00 – 18h00</p>
+            </div>
+          </div>
+          <div class="contact-card" style="--i:3">
+            <div class="contact-card-icon"><i class="fab fa-instagram"></i></div>
+            <div class="contact-card-text">
+              <h4>Instagram</h4>
+              <a href="https://www.instagram.com/lorangeraie_highschool/" target="_blank" rel="noopener">@lorangeraie_highschool</a>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form-side reveal-right" id="contactForm" novalidate>
+          <div class="form-group">
+            <input type="text" id="formName" required placeholder=" ">
+            <label for="formName">Nom complet</label>
+            <span class="form-border"></span>
+          </div>
+          <div class="form-group">
+            <input type="email" id="formEmail" required placeholder=" ">
+            <label for="formEmail">Adresse email</label>
+            <span class="form-border"></span>
+          </div>
+          <div class="form-group">
+            <textarea id="formMessage" required placeholder=" " rows="5"></textarea>
+            <label for="formMessage">Votre message</label>
+            <span class="form-border"></span>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">
+            <span>Envoyer le message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-wave">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"></path>
+      </svg>
+    </div>
+    <div class="footer-main">
+      <div class="container footer-grid">
+        <div class="footer-brand reveal">
+          <img src="assets/logo.jpg" alt="GSP L'Orangeraie" class="footer-logo">
+          <p>L'excellence au cœur de votre avenir — depuis plus de 30 ans à Rabat.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/lorangeraie_highschool/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col reveal" style="--i:1">
+          <h4>Navigation</h4>
+          <a href="#about">À Propos</a>
+          <a href="#leadership">Direction</a>
+          <a href="#levels">Niveaux</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col reveal" style="--i:2">
+          <h4>Coordonnées</h4>
+          <p><i class="fas fa-phone"></i> 0666 13 42 07</p>
+          <p><i class="fas fa-location-dot"></i> Rabat, Maroc</p>
+          <p><i class="fas fa-clock"></i> Lun–Ven : 8h–18h</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 GSP L'Orangeraie. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
