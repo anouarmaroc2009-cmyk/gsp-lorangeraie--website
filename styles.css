@@ -84,7 +84,7 @@ body {
 /* ─── FLOATING ORANGES ─── */
 .bg-oranges {
   position: fixed; inset: 0;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
   overflow: hidden;
 }
@@ -97,10 +97,10 @@ body {
   border-radius: 50%;
   background: radial-gradient(circle at 32% 32%, #FFB74D, #F57C00 50%, #E65100);
   box-shadow:
-    inset -3px -3px 6px rgba(0,0,0,0.12),
-    inset 3px 3px 6px rgba(255,255,255,0.08),
-    0 0 20px rgba(245,124,0,0.08);
-  opacity: 0.12;
+    inset -3px -3px 6px rgba(0,0,0,0.15),
+    inset 3px 3px 6px rgba(255,255,255,0.1),
+    0 0 30px rgba(245,124,0,0.15);
+  opacity: 0.2;
   transform: translate(-50%, -50%);
   animation: orangeDrift 18s ease-in-out infinite;
   animation-delay: var(--d, 0s);
