@@ -32,9 +32,11 @@
       }
     }
     placeOranges();
-    window.addEventListener('resize', placeOranges);
-    const orangeObserver = new MutationObserver(() => placeOranges());
-    orangeObserver.observe(document.body, { childList: true, subtree: true });
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(placeOranges, 300);
+    });
   }
 
   /* ─── PARTICLE CANVAS ─── */
