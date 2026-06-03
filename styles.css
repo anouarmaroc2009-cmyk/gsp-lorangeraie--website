@@ -54,30 +54,24 @@ body {
   z-index: 99999;
   background: var(--primary-dark);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-.loader-ring-container { position: relative; width: 64px; height: 64px; }
-.loader-ring {
-  position: absolute; inset: 0;
-  border: 2px solid rgba(212,116,43,0.15);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: preloaderSpin 0.9s linear infinite;
+.loader-logo {
+  height: min(80vw, 80vh);
+  width: auto;
+  border-radius: 16px;
+  box-shadow: 0 0 80px rgba(212,116,43,0.15);
+  transition: all 1s cubic-bezier(0.65, 0, 0.35, 1);
 }
-.loader-ring-inner {
-  position: absolute; inset: 8px;
-  border: 2px solid transparent;
-  border-bottom-color: var(--gold);
-  border-radius: 50%;
-  animation: preloaderSpin 0.6s linear infinite reverse;
+#preloader.shrinking .loader-logo {
+  height: 32px;
+  border-radius: 4px;
+  box-shadow: none;
+  opacity: 0.6;
 }
-.loader-logo { height: 32px; opacity: 0.6; }
-@keyframes preloaderSpin { to { transform: rotate(360deg); } }
 
 /* ─── BACKGROUND CANVAS ─── */
 #particleCanvas {
@@ -171,8 +165,10 @@ body {
   background: var(--accent);
   transition: width 0.4s var(--transition);
 }
-.nav-link:hover { color: #fff; }
-.nav-link:hover::after { width: 100%; }
+.nav-link:hover,
+.nav-link.active-link { color: #fff; }
+.nav-link:hover::after,
+.nav-link.active-link::after { width: 100%; }
 
 .nav-cta {
   display: inline-flex;

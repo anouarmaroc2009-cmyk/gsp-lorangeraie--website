@@ -5,8 +5,11 @@
   const preloader = document.getElementById('preloader');
   if (preloader) {
     window.addEventListener('load', () => {
-      preloader.classList.add('hidden');
-      setTimeout(() => { preloader.style.display = 'none'; }, 800);
+      preloader.classList.add('shrinking');
+      setTimeout(() => {
+        preloader.classList.add('hidden');
+        setTimeout(() => { preloader.style.display = 'none'; }, 600);
+      }, 1000);
     });
   }
 
@@ -82,19 +85,28 @@
       mouseY = e.clientY;
     });
 
+    let particlesAnimId;
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => { p.update(); p.draw(); });
       connectParticles();
-      requestAnimationFrame(animateParticles);
+      particlesAnimId = requestAnimationFrame(animateParticles);
     }
     animateParticles();
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(particlesAnimId);
+      } else {
+        animateParticles();
+      }
+    });
   }
 
   /* ─── CUSTOM CURSOR ─── */
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   const cursorDot = document.querySelector('[data-cursor-dot]');
   const cursorRing = document.querySelector('[data-cursor-ring]');
-  if (cursorDot && cursorRing) {
+  if (cursorDot && cursorRing && !isTouchDevice) {
     let dotX = 0, dotY = 0;
     let ringX = 0, ringY = 0;
 
@@ -124,23 +136,39 @@
     });
   }
 
-  /* ─── SCROLL PROGRESS ─── */
+  /* ─── SCROLL HANDLER ─── */
+  let lastScroll = 0;
   const scrollBar = document.querySelector('.scroll-indicator-bar');
-  if (scrollBar) {
-    window.addEventListener('scroll', () => {
-      const h = document.documentElement;
-      const pct = (h.scrollTop || document.body.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
-      scrollBar.style.width = pct + '%';
-    });
-  }
-
-  /* ─── NAVBAR ─── */
   const navbar = document.getElementById('navbar');
-  if (navbar) {
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.pageYOffset > 80);
-    });
-  }
+  const sections = document.querySelectorAll('section[id]');
+  const navAnchors = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const st = h.scrollTop || document.body.scrollTop;
+    if (scrollBar) {
+      const pct = st / (h.scrollHeight - h.clientHeight) * 100;
+      scrollBar.style.width = pct + '%';
+    }
+    if (navbar) {
+      navbar.classList.toggle('scrolled', st > 80);
+      if (st > 120 && st > lastScroll) {
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        navbar.style.transform = 'translateY(0)';
+      }
+    }
+    if (sections.length && navAnchors.length) {
+      const scrollY = st + 150;
+      let current = '';
+      sections.forEach(s => {
+        const top = s.offsetTop;
+        const hh = s.offsetHeight;
+        if (scrollY >= top && scrollY < top + hh) current = s.id;
+      });
+      navAnchors.forEach(a => a.classList.toggle('active-link', a.getAttribute('href') === '#' + current));
+    }
+    lastScroll = st;
+  });
 
   /* ─── HAMBURGER ─── */
   const hamburger = document.querySelector('.hamburger');
@@ -238,50 +266,6 @@
   );
   document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
 
-  /* ─── ACTIVE NAV LINK ─── */
-  const sections = document.querySelectorAll('section[id]');
-  const navAnchors = document.querySelectorAll('.nav-link');
-  if (sections.length && navAnchors.length) {
-    window.addEventListener('scroll', () => {
-      const scrollY = window.pageYOffset + 150;
-      let current = '';
-      sections.forEach(s => {
-        const top = s.offsetTop;
-        const h = s.offsetHeight;
-        if (scrollY >= top && scrollY < top + h) current = s.id;
-      });
-      navAnchors.forEach(a => {
-        const isActive = a.getAttribute('href') === '#' + current;
-        a.style.color = isActive ? '#fff' : '';
-        if (isActive) {
-          const after = a.querySelector('::after') || a.style;
-          a.style.setProperty('--after-width', '100%');
-        } else {
-          a.style.setProperty('--after-width', '0%');
-        }
-      });
-    });
-  }
-
-  /* ─── CONTACT FORM ─── */
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const btn = this.querySelector('.form-submit');
-      const originalHTML = btn.innerHTML;
-      btn.innerHTML = '<span>Message envoyé !</span> <i class="fas fa-check"></i>';
-      btn.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.innerHTML = originalHTML;
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 3000);
-      this.reset();
-    });
-  }
-
   /* ─── HERO PARALLAX FLOATING ─── */
   const floats = document.querySelectorAll('.float-shape');
   if (floats.length) {
@@ -295,20 +279,6 @@
     });
   }
 
-  /* ─── NAVBAR HIDE ON SCROLL DOWN ─── */
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    if (navbar) {
-      if (currentScroll > 120 && currentScroll > lastScroll) {
-        navbar.style.transform = 'translateY(-100%)';
-      } else {
-        navbar.style.transform = 'translateY(0)';
-      }
-    }
-    lastScroll = currentScroll;
-  });
-
   /* ─── LEVEL CARD TILT ON MOUSE MOVE ─── */
   document.querySelectorAll('.level-card').forEach(card => {
     card.addEventListener('mousemove', e => {
@@ -318,7 +288,7 @@
       card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${y * -6}deg) translateY(-8px)`;
     });
     card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateY(0)';
+      card.style.transform = '';
     });
   });
 
