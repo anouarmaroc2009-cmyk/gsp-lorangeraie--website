@@ -39,6 +39,7 @@ body {
   background: var(--bg);
   overflow-x: hidden;
   cursor: default;
+  position: relative;
 }
 
 ::selection { background: var(--accent); color: #fff; }
@@ -83,7 +84,8 @@ body {
 
 /* ─── FLOATING ORANGES ─── */
 .bg-oranges {
-  position: fixed; inset: 0;
+  position: absolute; top: 0; left: 0;
+  width: 100%;
   z-index: 1;
   pointer-events: none;
   overflow: hidden;

@@ -13,6 +13,30 @@
     });
   }
 
+  /* ─── FLOATING ORANGES ─── */
+  const bgOranges = document.getElementById('bgOranges');
+  if (bgOranges) {
+    function placeOranges() {
+      const height = document.documentElement.scrollHeight;
+      const count = Math.max(14, Math.floor(height / 200));
+      bgOranges.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const o = document.createElement('div');
+        o.className = 'bg-orange';
+        const x = 5 + Math.random() * 90;
+        const y = (i / count) * 100 + (Math.random() * (100 / count));
+        const s = 0.4 + Math.random() * 0.8;
+        const d = -(Math.random() * 18);
+        o.style.cssText = `--x:${x}%;--y:${y}%;--s:${s};--d:${d}s`;
+        bgOranges.appendChild(o);
+      }
+    }
+    placeOranges();
+    window.addEventListener('resize', placeOranges);
+    const orangeObserver = new MutationObserver(() => placeOranges());
+    orangeObserver.observe(document.body, { childList: true, subtree: true });
+  }
+
   /* ─── PARTICLE CANVAS ─── */
   const canvas = document.getElementById('particleCanvas');
   if (canvas) {
