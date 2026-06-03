@@ -167,6 +167,7 @@ body {
 }
 .nav-link:hover,
 .nav-link.active-link { color: #fff; }
+.nav-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
 .nav-link:hover::after,
 .nav-link.active-link::after { width: 100%; }
 
@@ -1159,6 +1160,44 @@ body {
 }
 .form-submit i { transition: transform 0.3s; }
 .form-submit:hover i { transform: translateX(4px); }
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.form-status {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  display: none;
+  text-align: center;
+}
+.form-status--success {
+  display: block;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+.form-status--error {
+  display: block;
+  background: #fbe9e7;
+  color: #c62828;
+  border: 1px solid #ffccbc;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .hero-line { opacity: 1; transform: none; }
+  .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; }
+  .hero-logo, .hero-badge, .hero-desc, .hero-actions, .hero-metrics { opacity: 1; transform: none; animation: none; }
+  .typewriter-cursor::after { display: none; }
+}
 
 /* ─── FOOTER ─── */
 .footer { background: var(--primary-dark); position: relative; }
@@ -1240,6 +1279,34 @@ body {
 .footer-bottom p {
   color: rgba(255,255,255,0.2);
   font-size: 0.75rem;
+}
+
+/* ─── CONTACT MAP ─── */
+.contact-map {
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+/* ─── PRINT STYLES ─── */
+@media print {
+  #preloader, #particleCanvas, .cursor-dot, .cursor-ring,
+  .scroll-indicator, .hero-floating, .hero-bg,
+  .hamburger, .nav-cta, .reel { display: none !important; }
+  body { background: #fff; color: #000; }
+  .navbar { position: static; background: none; padding: 10px 0; }
+  .nav-links { display: flex; gap: 20px; }
+  .nav-link { color: #333; }
+  .hero { min-height: auto; padding: 60px 24px; background: #fff; }
+  .hero-line { color: #000; }
+  .hero-line-alt { -webkit-text-fill-color: #D4742B; }
+  .hero-badge { color: #666; border-color: #ddd; }
+  .hero-desc { color: #333; }
+  .btn, .hero-metrics { border: 1px solid #ddd; }
+  .section { padding: 40px 0; }
+  .footer { background: #f5f5f5; }
+  .footer * { color: #333 !important; }
 }
 
 /* ─── RESPONSIVE ─── */

@@ -3,13 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="GSP L'Orangeraie — Groupe scolaire privé d'excellence à Rabat, Maroc. Collège & Lycée. Direction pédagogique Driss El Aliti.">
+  <meta name="description" content="GSP L'Orangeraie — Groupe scolaire privé d'excellence à Rabat, Maroc. Collège & Lycée. Direction pédagogique Driss El Aliti. Plus de 30 ans d'excellence éducative.">
+  <meta name="keywords" content="GSP L'Orangeraie, groupe scolaire privé, Rabat, Maroc, collège, lycée, éducation, Driss El Aliti, école privée Rabat, baccalauréat">
+  <meta name="author" content="GSP L'Orangeraie">
+  <meta name="robots" content="index, follow">
   <meta property="og:title" content="GSP L'Orangeraie — L'excellence au cœur de votre avenir">
-  <meta property="og:description" content="Groupe scolaire privé au Quartier Les Orangers, Rabat. Collège & Lycée.">
+  <meta property="og:description" content="Groupe scolaire privé au Quartier Les Orangers, Rabat. Collège & Lycée. Plus de 30 ans d'excellence éducative.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gsp-lorangeraie.vercel.app">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="GSP L'Orangeraie">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GSP L'Orangeraie — L'excellence au cœur de votre avenir">
+  <meta name="twitter:description" content="Groupe scolaire privé d'excellence à Rabat, Maroc. Collège & Lycée.">
   <meta name="theme-color" content="#0F2B1A">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍊%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F2B1A'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-size='20' fill='%23D4742B'%3EG%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F2B1A'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-size='20' fill='%23D4742B'%3EG%3C/text%3E%3C/svg%3E">
   <title>GSP L'Orangeraie — Rabat | Groupe Scolaire Privé</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "GSP L'Orangeraie",
+    "alternateName": "Groupe Scolaire Privé L'Orangeraie",
+    "description": "Groupe scolaire privé d'excellence à Rabat, Maroc. Collège & Lycée.",
+    "url": "https://gsp-lorangeraie.vercel.app",
+    "logo": "https://gsp-lorangeraie.vercel.app/assets/logo.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Quartier Les Orangers",
+      "addressLocality": "Rabat",
+      "addressCountry": "MA",
+      "postalCode": "10100"
+    },
+    "telephone": "+212666134207",
+    "email": "contact@gsp-lorangeraie.ma",
+    "founder": {
+      "@type": "Person",
+      "name": "Driss El Aliti",
+      "jobTitle": "Directeur Pédagogique"
+    },
+    "foundingDate": "1995",
+    "areaServed": "Rabat, Maroc",
+    "teaches": ["Collège", "Lycée", "Baccalauréat"]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
@@ -54,7 +92,7 @@
     </div>
   </nav>
 
-  <section id="hero" class="hero">
+    <section id="hero" class="hero" aria-label="Accueil">
     <div class="hero-bg">
       <div class="hero-grid"></div>
       <div class="hero-gradient"></div>
@@ -110,7 +148,7 @@
     </div>
   </section>
 
-  <section id="about" class="section about">
+    <section id="about" class="section about" aria-label="À propos">
     <div class="container">
       <div class="section-head reveal">
         <span class="section-tag">Notre identité</span>
@@ -352,13 +390,20 @@
             </div>
           </div>
           <div class="contact-card" style="--i:2">
+            <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-card-text">
+              <h4>Email</h4>
+              <a href="mailto:contact@gsp-lorangeraie.ma">contact@gsp-lorangeraie.ma</a>
+            </div>
+          </div>
+          <div class="contact-card" style="--i:3">
             <div class="contact-card-icon"><i class="fas fa-clock"></i></div>
             <div class="contact-card-text">
               <h4>Horaires</h4>
               <p>Lun–Ven : 8h00 – 18h00</p>
             </div>
           </div>
-          <div class="contact-card" style="--i:3">
+          <div class="contact-card" style="--i:4">
             <div class="contact-card-icon"><i class="fab fa-instagram"></i></div>
             <div class="contact-card-text">
               <h4>Instagram</h4>
@@ -366,19 +411,30 @@
             </div>
           </div>
         </div>
-        <form class="contact-form-side reveal-right" id="contactForm" action="https://formspree.io/f/xdovkgoz" method="POST" novalidate>
+        <div class="contact-map reveal" style="grid-column: 1 / -1;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3309.7173281269757!2d-6.849519684789991!3d33.97148588062097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7137c4a12c3db%3A0x6c8e5b2e5f5e5c5!2sLes%20Orangers%2C%20Rabat%2C%20Morocco!5e0!3m2!1sen!2s!4v1"
+            width="100%" height="300" style="border:0; border-radius: 16px;" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+            title="Localisation de GSP L'Orangeraie à Rabat">
+          </iframe>
+        </div>
+        <form class="contact-form-side reveal-right" id="contactForm" action="https://formspree.io/f/xdovkgoz" method="POST" accept-charset="UTF-8" novalidate>
+          <input type="hidden" name="_language" value="fr">
+          <input type="hidden" name="_subject" value="Nouveau message depuis le site GSP L'Orangeraie">
           <div class="form-group">
-            <input type="text" id="formName" required placeholder=" ">
+            <input type="text" id="formName" name="name" required placeholder=" " autocomplete="name">
             <label for="formName">Nom complet</label>
             <span class="form-border"></span>
           </div>
           <div class="form-group">
-            <input type="email" id="formEmail" required placeholder=" ">
+            <input type="email" id="formEmail" name="email" required placeholder=" " autocomplete="email">
             <label for="formEmail">Adresse email</label>
             <span class="form-border"></span>
           </div>
           <div class="form-group">
-            <textarea id="formMessage" required placeholder=" " rows="5"></textarea>
+            <textarea id="formMessage" name="message" required placeholder=" " rows="5" autocomplete="off"></textarea>
             <label for="formMessage">Votre message</label>
             <span class="form-border"></span>
           </div>
@@ -417,6 +473,7 @@
           <h4>Coordonnées</h4>
           <p><i class="fas fa-phone"></i> 0666 13 42 07</p>
           <p><i class="fas fa-location-dot"></i> Rabat, Maroc</p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:contact@gsp-lorangeraie.ma" style="color:inherit;text-decoration:none;">contact@gsp-lorangeraie.ma</a></p>
           <p><i class="fas fa-clock"></i> Lun–Ven : 8h–18h</p>
         </div>
       </div>

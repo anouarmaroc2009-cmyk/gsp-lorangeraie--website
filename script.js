@@ -233,18 +233,36 @@
   }
 
   /* ─── COUNTER ANIMATION ─── */
+  function parseTarget(val) {
+    const match = String(val).match(/^([+\-])?(\d+)(k|K|m|M)?$/);
+    if (!match) return { value: parseInt(String(val).replace(/[^0-9]/g, '')) || 0, suffix: '' };
+    let num = parseInt(match[2]);
+    if (match[3] && match[3].toLowerCase() === 'k') num *= 1000;
+    if (match[3] && match[3].toLowerCase() === 'm') num *= 1000000;
+    const prefix = match[1] === '+' ? '+' : '';
+    return { value: num, displaySuffix: match[3] ? match[3].toLowerCase() : '' };
+  }
   function animateCounter(el) {
-    const target = parseInt(el.dataset.target);
-    const suffix = el.dataset.suffix || '';
-    if (!target || isNaN(target)) return;
+    const raw = el.dataset.target;
+    const { value: targetVal, displaySuffix } = parseTarget(raw);
+    if (!targetVal || isNaN(targetVal)) return;
     const duration = 2000;
     const start = performance.now();
     function update(now) {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.floor(eased * target) + suffix;
+      const current = Math.floor(eased * targetVal);
+      let display = current;
+      if (displaySuffix === 'k') display = Math.floor(current / 1000) + 'k';
+      else if (displaySuffix === 'm') display = Math.floor(current / 1000000) + 'M';
+      el.textContent = display;
       if (progress < 1) requestAnimationFrame(update);
-      else el.textContent = target + suffix;
+      else {
+        let final = targetVal;
+        if (displaySuffix === 'k') final = Math.floor(targetVal / 1000) + 'k';
+        else if (displaySuffix === 'm') final = Math.floor(targetVal / 1000000) + 'M';
+        el.textContent = raw.replace(/[0-9]/g, '').startsWith('+') ? '+' + final : final;
+      }
     }
     requestAnimationFrame(update);
   }
@@ -328,6 +346,42 @@
       setTimeout(() => ripple.remove(), 700);
     });
   });
+
+  /* ─── FORM HANDLING ─── */
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    const formBtn = contactForm.querySelector('.form-submit');
+    const formStatus = document.createElement('div');
+    formStatus.className = 'form-status';
+    formStatus.setAttribute('role', 'status');
+    contactForm.appendChild(formStatus);
+
+    contactForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (formBtn) { formBtn.disabled = true; formBtn.querySelector('span').textContent = 'Envoi en cours…'; }
+      formStatus.className = 'form-status';
+      formStatus.textContent = '';
+      try {
+        const res = await fetch(this.action, {
+          method: 'POST',
+          body: new FormData(this),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          formStatus.className = 'form-status form-status--success';
+          formStatus.textContent = '✓ Message envoyé avec succès. Nous vous répondrons rapidement.';
+          this.reset();
+        } else {
+          throw new Error('Erreur serveur');
+        }
+      } catch (_err) {
+        formStatus.className = 'form-status form-status--error';
+        formStatus.textContent = '✗ Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.';
+      } finally {
+        if (formBtn) { formBtn.disabled = false; formBtn.querySelector('span').textContent = 'Envoyer le message'; }
+      }
+    });
+  }
 
   const rippleStyle = document.createElement('style');
   rippleStyle.textContent = `@keyframes rippleAnim { to { transform: scale(2.5); opacity: 0; } }`;
