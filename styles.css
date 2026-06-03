@@ -81,6 +81,74 @@ body {
   opacity: 0.3;
 }
 
+/* ─── FLOATING ORANGES ─── */
+.bg-oranges {
+  position: fixed; inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-orange {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: calc(50px * var(--s, 1));
+  height: calc(50px * var(--s, 1));
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 32%, #FFB74D, #F57C00 50%, #E65100);
+  box-shadow:
+    inset -3px -3px 6px rgba(0,0,0,0.12),
+    inset 3px 3px 6px rgba(255,255,255,0.08),
+    0 0 20px rgba(245,124,0,0.08);
+  opacity: 0.12;
+  transform: translate(-50%, -50%);
+  animation: orangeDrift 18s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+.bg-orange::before {
+  content: '';
+  position: absolute;
+  top: -8%;
+  left: 50%;
+  width: 30%;
+  height: 28%;
+  background: #66BB6A;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform: translateX(-50%) rotate(-20deg);
+}
+.bg-orange::after {
+  content: '';
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  width: 6%;
+  height: 18%;
+  background: #388E3C;
+  border-radius: 2px;
+  transform: translateX(-50%) rotate(-20deg);
+}
+@keyframes orangeDrift {
+  0%, 100% {
+    transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate(-50%, -50%) translate(30px, -20px) rotate(8deg);
+  }
+  40% {
+    transform: translate(-50%, -50%) translate(-15px, -35px) rotate(-3deg);
+  }
+  60% {
+    transform: translate(-50%, -50%) translate(-35px, 10px) rotate(12deg);
+  }
+  80% {
+    transform: translate(-50%, -50%) translate(20px, 25px) rotate(-5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-orange { animation: none; opacity: 0.06; }
+}
+
 /* ─── CUSTOM CURSOR ─── */
 .cursor-dot {
   position: fixed; pointer-events: none; z-index: 99998;
@@ -1291,7 +1359,7 @@ body {
 
 /* ─── PRINT STYLES ─── */
 @media print {
-  #preloader, #particleCanvas, .cursor-dot, .cursor-ring,
+  #preloader, #particleCanvas, .bg-oranges, .cursor-dot, .cursor-ring,
   .scroll-indicator, .hero-floating, .hero-bg,
   .hamburger, .nav-cta, .reel { display: none !important; }
   body { background: #fff; color: #000; }
