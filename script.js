@@ -373,6 +373,15 @@
     });
   });
 
+  /* ─── EMAIL OBFUSCATION ─── */
+  document.querySelectorAll('.obfuscated-email').forEach(el => {
+    const user = el.dataset.user;
+    const domain = el.dataset.domain;
+    const email = user + '@' + domain;
+    el.href = 'mailto:' + email;
+    if (el.textContent === user + '@' + domain + '...') el.textContent = email;
+  });
+
   /* ─── FORM HANDLING ─── */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
@@ -382,11 +391,33 @@
     formStatus.setAttribute('role', 'status');
     contactForm.appendChild(formStatus);
 
+    function sanitize(str) {
+      const d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML.replace(/[<>]/g, '').trim();
+    }
+
     contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
+      const trap = document.getElementById('formTrap');
+      if (trap && trap.value.trim() !== '') return;
       if (formBtn) { formBtn.disabled = true; formBtn.querySelector('span').textContent = 'Envoi en cours…'; }
       formStatus.className = 'form-status';
       formStatus.textContent = '';
+
+      const name = document.getElementById('formName');
+      const email = document.getElementById('formEmail');
+      const msg = document.getElementById('formMessage');
+      if (name) name.value = sanitize(name.value);
+      if (email) email.value = sanitize(email.value);
+      if (msg) msg.value = sanitize(msg.value);
+      if (!name?.value || !email?.value || !msg?.value) {
+        formStatus.className = 'form-status form-status--error';
+        formStatus.textContent = '✗ Veuillez remplir tous les champs obligatoires.';
+        if (formBtn) { formBtn.disabled = false; formBtn.querySelector('span').textContent = 'Envoyer le message'; }
+        return;
+      }
+
       try {
         const res = await fetch(this.action, {
           method: 'POST',
