@@ -496,6 +496,84 @@
     });
   }
 
+  /* ─── MAGNETIC BUTTONS ─── */
+  if (!isTouchDevice) {
+    document.querySelectorAll('.btn, .nav-cta, .footer-social a').forEach(function(btn) {
+      btn.addEventListener('mousemove', function(e) {
+        var r = this.getBoundingClientRect();
+        var x = e.clientX - r.left - r.width / 2;
+        var y = e.clientY - r.top - r.height / 2;
+        var s = Math.min(this.classList.contains('btn') ? 0.25 : 0.15, 0.25);
+        this.style.transform = 'translate(' + (x * s) + 'px, ' + (y * s) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+      });
+    });
+  }
+
+  /* ─── SMOOTH PARALLAX SCROLL ─── */
+  (function() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var sections = document.querySelectorAll('.hero, .about, .leadership, .levels, .contact');
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          sections.forEach(function(s) {
+            var rect = s.getBoundingClientRect();
+            var vh = window.innerHeight;
+            if (rect.top < vh && rect.bottom > -vh) {
+              var speed = s.classList.contains('hero') ? 0.15 : 0.06;
+              var y = rect.top * speed;
+              var bg = s.querySelector('.section::after, .hero-slideshow');
+              if (s.classList.contains('hero')) {
+                var slideshow = s.querySelector('.hero-slideshow');
+                if (slideshow) slideshow.style.transform = 'translateY(' + y + 'px)';
+              }
+            }
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+
+  /* ─── TILT CARDS IMPROVED ─── */
+  document.querySelectorAll('.level-card, .contact-card').forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var rect = card.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width - 0.5;
+      var y = (e.clientY - rect.top) / rect.height - 0.5;
+      var rotY = card.classList.contains('level-card') ? 8 : 3;
+      var rotX = card.classList.contains('level-card') ? -6 : -3;
+      card.style.transform = 'perspective(800px) rotateY(' + (x * rotY) + 'deg) rotateX(' + (y * rotX) + 'deg) translateY(-4px)';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = '';
+    });
+  });
+
+  /* ─── STAGGER ENTRANCE IMPROVED ─── */
+  var staggerObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        var children = entry.target.querySelectorAll('.stagger-item');
+        children.forEach(function(child, i) {
+          child.style.setProperty('--stagger-delay', (i * 80) + 'ms');
+          child.classList.add('stagger-in');
+        });
+        staggerObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.about-values, .profile-achievements, .contact-info-side').forEach(function(el) {
+    staggerObserver.observe(el);
+  });
+
   var rippleStyle = document.createElement('style');
   rippleStyle.textContent = '@keyframes rippleAnim { to { transform: scale(2.5); opacity: 0; } }';
   document.head.appendChild(rippleStyle);
