@@ -12,6 +12,65 @@
     });
   }
 
+  (function() {
+    var slides = document.querySelectorAll('.slide');
+    var label = document.getElementById('slideLabel');
+    var progressBar = document.getElementById('slideProgressBar');
+    if (!slides.length || !label) return;
+    var idx = 0;
+    var total = slides.length;
+    var slideDuration = 2500;
+    var interval, progressInterval;
+
+    function showSlide(i) {
+      slides.forEach(function(s) { s.classList.remove('active', 'ken-burns'); });
+      slides[i].classList.add('active', 'ken-burns');
+      label.textContent = slides[i].dataset.title || '';
+      label.style.opacity = '0';
+      setTimeout(function() { label.style.opacity = '1'; }, 100);
+    }
+
+    function startProgress() {
+      var startTime = Date.now();
+      if (progressInterval) clearInterval(progressInterval);
+      progressInterval = setInterval(function() {
+        var elapsed = Date.now() - startTime;
+        var pct = Math.min((elapsed / slideDuration) * 100, 100);
+        if (progressBar) progressBar.style.width = pct + '%';
+        if (elapsed >= slideDuration) {
+          clearInterval(progressInterval);
+          progressBar.style.width = '0%';
+        }
+      }, 30);
+    }
+
+    function nextSlide() {
+      idx = (idx + 1) % total;
+      showSlide(idx);
+      startProgress();
+    }
+
+    showSlide(0);
+    startProgress();
+    interval = setInterval(nextSlide, slideDuration);
+
+    var slideshowEl = document.querySelector('.hero-slideshow');
+    if (slideshowEl) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) {
+            clearInterval(interval);
+            clearInterval(progressInterval);
+          } else {
+            interval = setInterval(nextSlide, slideDuration);
+            startProgress();
+          }
+        });
+      }, { threshold: 0 });
+      observer.observe(slideshowEl);
+    }
+  })();
+
   var bgOranges = document.getElementById('bgOranges');
   if (bgOranges) {
     function placeOranges() {

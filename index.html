@@ -63,7 +63,7 @@
   <a href="#main-content" class="skip-link">Aller au contenu</a>
 
   <div id="preloader">
-    <img src="assets/logo.jpg" alt="GSP L'Orangeraie" class="loader-logo">
+    <picture><source srcset="assets/logo.webp" type="image/webp"><img src="assets/logo.jpg" alt="GSP L'Orangeraie" class="loader-logo"></picture>
   </div>
 
   <canvas id="particleCanvas" aria-hidden="true"></canvas>
@@ -80,7 +80,7 @@
   <nav class="navbar" id="navbar" aria-label="Navigation principale">
     <div class="nav-container">
       <a href="#hero" class="nav-logo">
-        <img src="assets/logo.jpg" alt="GSP L'Orangeraie" class="nav-logo-img" width="42" height="42">
+        <picture><source srcset="assets/logo.webp" type="image/webp"><img src="assets/logo.jpg" alt="GSP L'Orangeraie" class="nav-logo-img" width="42" height="42"></picture>
       </a>
       <div class="nav-links" id="navLinks" role="menubar">
         <a href="#about" class="nav-link" role="menuitem"><span class="nav-link-text">À Propos</span></a>
@@ -102,9 +102,16 @@
 
   <main id="main-content">
     <section id="hero" class="hero" aria-label="Accueil">
-    <div class="hero-bg" aria-hidden="true">
-      <div class="hero-grid"></div>
-      <div class="hero-gradient"></div>
+    <div class="hero-slideshow" aria-hidden="true">
+      <div class="slide active" style="background-image: url(assets/hero/hassan-tower.webp)" data-title="Tour Hassan"></div>
+      <div class="slide" style="background-image: url(assets/hero/chellah-ruins.webp)" data-title="Chellah — Nécropole Mérimide"></div>
+      <div class="slide" style="background-image: url(assets/hero/rabat-sunset.webp)" data-title="Rabat — Ville Impériale"></div>
+      <div class="slide" style="background-image: url(assets/hero/rabat-city.webp)" data-title="Rabat — Capitale du Maroc"></div>
+      <div class="slide" style="background-image: url(assets/hero/modern-rabat.webp)" data-title="Rabat — Modernité & Tradition"></div>
+      <div class="slide" style="background-image: url(assets/logo.jpg)" data-title="GSP L'Orangeraie — Destination Excellence"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-label" id="slideLabel">Tour Hassan</div>
+      <div class="slide-progress" aria-hidden="true"><div class="slide-progress-bar" id="slideProgressBar"></div></div>
     </div>
     <div class="hero-floating" aria-hidden="true">
       <div class="float-shape float-shape-1"></div>
@@ -114,7 +121,7 @@
     </div>
     <div class="hero-content">
       <div class="hero-logo-wrapper">
-        <img src="assets/logo.jpg" alt="GSP L'Orangeraie" class="hero-logo" id="heroLogo" width="90" height="90" fetchpriority="high">
+        <picture><source srcset="assets/logo.webp" type="image/webp"><img src="assets/logo.jpg" alt="GSP L'Orangeraie" class="hero-logo" id="heroLogo" width="90" height="90" fetchpriority="high"></picture>
       </div>
       <span class="hero-badge" id="heroBadge">Établissement Privé — Rabat</span>
       <h1 class="hero-title" id="heroTitle">
@@ -239,7 +246,7 @@
           <div class="portrait-container">
             <div class="portrait-frame" aria-hidden="true"></div>
             <div class="portrait-image">
-              <img src="driss.png" alt="Portrait de Driss El Aliti, Directeur Pédagogique" loading="lazy" width="340" height="453">
+              <picture><source srcset="driss.webp" type="image/webp"><img src="driss.png" alt="Portrait de Driss El Aliti, Directeur Pédagogique" loading="lazy" width="340" height="453"></picture>
             </div>
             <div class="portrait-decoration" aria-hidden="true">
               <div class="deco-circle deco-circle-1"></div>
@@ -472,7 +479,7 @@
     <div class="footer-main">
       <div class="container footer-grid">
         <div class="footer-brand reveal">
-          <img src="assets/logo.jpg" alt="GSP L'Orangeraie" class="footer-logo" loading="lazy" width="40" height="40">
+          <picture><source srcset="assets/logo.webp" type="image/webp"><img src="assets/logo.jpg" alt="GSP L'Orangeraie" class="footer-logo" loading="lazy" width="40" height="40"></picture>
           <p>L'excellence au cœur de votre avenir — depuis plus de 30 ans à Rabat.</p>
           <div class="footer-social">
             <a href="https://www.instagram.com/lorangeraie_highschool/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
