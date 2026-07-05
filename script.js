@@ -349,8 +349,8 @@
       var eased = 1 - Math.pow(1 - progress, 3);
       var current = Math.floor(eased * targetVal);
       var display = current;
-      if (displaySuffix === 'k') display = Math.floor(current / 1000) + 'k';
-      else if (displaySuffix === 'm') display = Math.floor(current / 1000000) + 'M';
+      if (displaySuffix === 'k') display = current + 'k';
+      else if (displaySuffix === 'm') display = current + 'M';
       el.textContent = raw.replace(/[0-9]/g, '').startsWith('+') ? '+' + display : display;
       if (progress < 1) requestAnimationFrame(update);
       else {
