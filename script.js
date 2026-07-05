@@ -102,13 +102,17 @@
     var ctx = canvas.getContext('2d');
     var particles = [];
     var mouseX = 0, mouseY = 0;
+    var resizeTimer;
 
     function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }, 100);
     }
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', resize, { passive: true });
 
     function Particle() { this.reset(); }
     Particle.prototype.reset = function () {
@@ -164,7 +168,7 @@
     document.addEventListener('mousemove', function (e) {
       mouseX = e.clientX;
       mouseY = e.clientY;
-    });
+    }, { passive: true });
 
     var particlesAnimId;
     function animateParticles() {
@@ -193,7 +197,7 @@
     document.addEventListener('mousemove', function (e) {
       dotX = e.clientX;
       dotY = e.clientY;
-    });
+    }, { passive: true });
 
     function animateCursor() {
       ringX += (dotX - ringX) * 0.12;
@@ -247,7 +251,7 @@
       navAnchors.forEach(function (a) { a.classList.toggle('active-link', a.getAttribute('href') === '#' + current); });
     }
     lastScroll = st;
-  });
+  }, { passive: true });
 
   var hamburger = document.querySelector('.hamburger');
   var navLinks = document.querySelector('.nav-links');
@@ -386,7 +390,7 @@
         var speed = 8 + i * 4;
         el.style.transform = 'translate(' + (x * speed) + 'px, ' + (y * speed) + 'px)';
       });
-    });
+    }, { passive: true });
   }
 
   document.querySelectorAll('.level-card').forEach(function (card) {
@@ -524,12 +528,9 @@
             var rect = s.getBoundingClientRect();
             var vh = window.innerHeight;
             if (rect.top < vh && rect.bottom > -vh) {
-              var speed = s.classList.contains('hero') ? 0.15 : 0.06;
-              var y = rect.top * speed;
-              var bg = s.querySelector('.section::after, .hero-slideshow');
               if (s.classList.contains('hero')) {
                 var slideshow = s.querySelector('.hero-slideshow');
-                if (slideshow) slideshow.style.transform = 'translateY(' + y + 'px)';
+                if (slideshow) slideshow.style.transform = 'translateY(' + (rect.top * 0.1) + 'px)';
               }
             }
           });
