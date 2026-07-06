@@ -542,11 +542,7 @@
       btn.disabled = true;
 
       try {
-        var apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-          ? '/api/register'
-          : 'http://localhost:3000/api/register';
-
-        var res = await fetch(apiUrl, {
+        var res = await fetch('/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
@@ -558,7 +554,7 @@
         this.reset();
         if (regLevel) regLevel.classList.remove('filled');
       } catch (err) {
-        btn.innerHTML = '<span>Serveur hors ligne \u2014 r\u00e9essayez plus tard</span> <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>';
+        btn.innerHTML = '<span>Erreur \u2014 r\u00e9essayez</span> <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>';
         btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
       }
 
