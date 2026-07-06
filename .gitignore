@@ -4,3 +4,5 @@ node_modules/
 whatsapp-qr.png
 .env
 package-lock.json
+
+.vercel
