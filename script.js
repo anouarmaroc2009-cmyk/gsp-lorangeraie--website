@@ -625,6 +625,13 @@
     staggerObserver.observe(el);
   });
 
+  /* ─── AUTO-UPDATE COPYRIGHT YEAR ─── */
+  var yearEl = document.getElementById('copyrightYear');
+  if (yearEl) {
+    var currentYear = new Date().getFullYear();
+    yearEl.textContent = Math.min(currentYear, 2100);
+  }
+
   var rippleStyle = document.createElement('style');
   rippleStyle.textContent = '@keyframes rippleAnim { to { transform: scale(2.5); opacity: 0; } }';
   document.head.appendChild(rippleStyle);
