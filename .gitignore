@@ -1,12 +1,6 @@
 node_modules/
+.wwebjs_auth/
+.wwebjs_cache/
+whatsapp-qr.png
 .env
-.DS_Store
-Thumbs.db
-*.log
-package.json
 package-lock.json
-node_modules/
-# Original high-res (WebP used on site)
-assets/hero/*.jpg
-assets/hero/*.png
-.vercel

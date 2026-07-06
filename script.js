@@ -516,6 +516,56 @@
     });
   }
 
+  /* ─── REGISTRATION FORM ─── */
+  var regForm = document.getElementById('registrationForm');
+  if (regForm) {
+    var regLevel = document.getElementById('regLevel');
+    if (regLevel) {
+      regLevel.addEventListener('change', function() {
+        regLevel.classList.toggle('filled', regLevel.value !== '');
+      });
+    }
+
+    regForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var btn = this.querySelector('.form-submit');
+      var originalHTML = btn.innerHTML;
+      var data = {
+        name: document.getElementById('regName').value.trim(),
+        phone: document.getElementById('regPhone').value.trim(),
+        email: document.getElementById('regEmail').value.trim(),
+        level: document.getElementById('regLevel').value,
+        message: document.getElementById('regMessage').value.trim()
+      };
+
+      btn.innerHTML = '<span>Envoi en cours\u2026</span> <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>';
+      btn.disabled = true;
+
+      try {
+        var res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error('Erreur serveur');
+
+        btn.innerHTML = '<span>Demande envoy\u00e9e !</span> <i class="fas fa-check" aria-hidden="true"></i>';
+        btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+        this.reset();
+        if (regLevel) regLevel.classList.remove('filled');
+      } catch (err) {
+        btn.innerHTML = '<span>Erreur \u2014 r\u00e9essayez</span> <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>';
+        btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+      }
+
+      setTimeout(function() {
+        btn.innerHTML = originalHTML;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    });
+  }
+
   /* ─── SMOOTH PARALLAX SCROLL ─── */
   (function() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

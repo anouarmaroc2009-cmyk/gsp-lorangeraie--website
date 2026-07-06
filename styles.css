@@ -1204,6 +1204,153 @@ body {
   transition-delay: var(--delay, 0ms);
 }
 
+/* ─── REGISTRATION ─── */
+.registration {
+  background: linear-gradient(160deg, var(--primary), var(--primary-dark));
+  position: relative;
+  overflow: hidden;
+}
+.registration::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(212,116,43,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(201,168,76,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+.registration .section-tag {
+  background: rgba(212,116,43,0.15);
+  border-color: rgba(212,116,43,0.2);
+}
+.registration .section-title { color: #fff; }
+.registration .section-sub { color: rgba(255,255,255,0.4); }
+.registration-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 48px;
+  align-items: start;
+}
+.registration-info-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px;
+  color: #fff;
+  backdrop-filter: blur(12px);
+}
+.reg-info-icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(212,116,43,0.15);
+  border: 2px solid rgba(212,116,43,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.registration-info-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.registration-info-card > p {
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+.reg-benefits { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.reg-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.7);
+}
+.reg-benefits li i { color: var(--accent-light); font-size: 0.9rem; }
+
+.registration-form-side {
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-xl);
+}
+.registration-form-side .form-group input,
+.registration-form-side .form-group textarea,
+.registration-form-side .form-group select {
+  width: 100%;
+  padding: 16px 18px;
+  background: var(--bg);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.3s;
+  resize: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: text;
+}
+.registration-form-side .form-group select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238A8AAA' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 44px;
+}
+.registration-form-side .form-group label {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  pointer-events: none;
+  transition: all 0.3s var(--transition);
+  background: var(--bg);
+  padding: 0 4px;
+}
+.registration-form-side .form-group textarea ~ label,
+.registration-form-side .form-group select ~ label {
+  top: 18px;
+  transform: none;
+}
+.registration-form-side .form-group input:focus,
+.registration-form-side .form-group textarea:focus,
+.registration-form-side .form-group select:focus {
+  border-color: var(--accent);
+  background: var(--bg-card);
+}
+.registration-form-side .form-group input:focus ~ label,
+.registration-form-side .form-group textarea:focus ~ label,
+.registration-form-side .form-group select:focus ~ label,
+.registration-form-side .form-group input:not(:placeholder-shown) ~ label,
+.registration-form-side .form-group textarea:not(:placeholder-shown) ~ label,
+.registration-form-side .form-group select:valid ~ label,
+.registration-form-side .form-group select:focus ~ label {
+  top: -10px;
+  font-size: 0.7rem;
+  color: var(--accent);
+  background: var(--bg-card);
+}
+.form-row { margin-bottom: 20px; }
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-note {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.form-note i { margin-right: 6px; }
+
+@media (max-width: 768px) {
+  .registration-grid { grid-template-columns: 1fr; }
+}
+
 /* ─── CONTACT ─── */
 .contact { background: var(--bg); }
 .contact-grid {
