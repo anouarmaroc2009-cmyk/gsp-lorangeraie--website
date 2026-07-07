@@ -427,20 +427,21 @@
               <span class="form-border"></span>
             </div>
           </div>
-          <div class="form-row">
+          <div class="form-row form-row-2">
             <div class="form-group">
-              <select id="regLevel" required>
+              <select id="regCategory" required>
                 <option value="" disabled selected></option>
-                <option value="1AC">1AC</option>
-                <option value="2AC">2AC</option>
-                <option value="3AC">3AC</option>
-                <option value="TC">TC</option>
-                <option value="1BAC Éco">1BAC Éco</option>
-                <option value="1BAC Sc">1BAC Sc</option>
-                <option value="2BAC Sc">2BAC Sc</option>
-                <option value="2BAC Éco">2BAC Éco</option>
+                <option value="Collège">Collège</option>
+                <option value="Lycée">Lycée</option>
               </select>
-              <label for="regLevel">Niveau souhaité</label>
+              <label for="regCategory">Cycle</label>
+              <span class="form-border"></span>
+            </div>
+            <div class="form-group">
+              <select id="regLevel" required disabled>
+                <option value="" disabled selected></option>
+              </select>
+              <label for="regLevel">Niveau</label>
               <span class="form-border"></span>
             </div>
           </div>

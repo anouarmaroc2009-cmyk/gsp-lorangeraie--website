@@ -519,7 +519,37 @@
   /* ─── REGISTRATION FORM ─── */
   var regForm = document.getElementById('registrationForm');
   if (regForm) {
+    var regCategory = document.getElementById('regCategory');
     var regLevel = document.getElementById('regLevel');
+
+    var levelsByCategory = {
+      'Collège': ['1AC', '2AC', '3AC'],
+      'Lycée': ['TC', '1BAC Éco', '1BAC Sc', '2BAC Sc', '2BAC Éco']
+    };
+
+    function populateLevels() {
+      regLevel.innerHTML = '<option value="" disabled selected></option>';
+      var cat = regCategory.value;
+      if (cat && levelsByCategory[cat]) {
+        levelsByCategory[cat].forEach(function(lvl) {
+          var opt = document.createElement('option');
+          opt.value = lvl;
+          opt.textContent = lvl;
+          regLevel.appendChild(opt);
+        });
+        regLevel.disabled = false;
+      } else {
+        regLevel.disabled = true;
+      }
+      regLevel.classList.toggle('filled', false);
+    }
+
+    if (regCategory) {
+      regCategory.addEventListener('change', function() {
+        regCategory.classList.toggle('filled', regCategory.value !== '');
+        populateLevels();
+      });
+    }
     if (regLevel) {
       regLevel.addEventListener('change', function() {
         regLevel.classList.toggle('filled', regLevel.value !== '');
@@ -530,11 +560,13 @@
       e.preventDefault();
       var btn = this.querySelector('.form-submit');
       var originalHTML = btn.innerHTML;
+      var category = regCategory ? regCategory.value : '';
+      var level = regLevel ? regLevel.value : '';
       var data = {
         name: document.getElementById('regName').value.trim(),
         phone: document.getElementById('regPhone').value.trim(),
         email: document.getElementById('regEmail').value.trim(),
-        level: document.getElementById('regLevel').value,
+        level: category + ' - ' + level,
         message: document.getElementById('regMessage').value.trim()
       };
 
@@ -552,7 +584,9 @@
         btn.innerHTML = '<span>Demande envoy\u00e9e !</span> <i class="fas fa-check" aria-hidden="true"></i>';
         btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
         this.reset();
-        if (regLevel) regLevel.classList.remove('filled');
+        if (regCategory) regCategory.classList.remove('filled');
+        if (regLevel) { regLevel.classList.remove('filled'); regLevel.disabled = true; }
+        populateLevels();
       } catch (err) {
         btn.innerHTML = '<span>Erreur \u2014 r\u00e9essayez</span> <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>';
         btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';

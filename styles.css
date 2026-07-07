@@ -1319,6 +1319,10 @@ body {
   top: 18px;
   transform: none;
 }
+.registration-form-side .form-group select:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 .registration-form-side .form-group input:focus,
 .registration-form-side .form-group textarea:focus,
 .registration-form-side .form-group select:focus {
