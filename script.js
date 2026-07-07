@@ -524,7 +524,7 @@
 
     var levelsByCategory = {
       'Collège': ['1AC', '2AC', '3AC'],
-      'Lycée': ['TC', '1BAC Éco', '1BAC Sc', '2BAC Sc', '2BAC Éco']
+      'Lycée': ['TC', '1BAC Éco', '1BAC Sc', '2BAC Éco', '2BAC SVT', '2BAC PC']
     };
 
     function populateLevels() {
